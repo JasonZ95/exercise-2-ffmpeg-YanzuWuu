@@ -25,13 +25,11 @@ def convert_video(path):
 
         for task in tasks:
             print('Task: ', task.result())
-        print(i)
         i += 1
-        print(i)
-        print(str(i) +' videos have been transferred ')
+    print(str(i-1) +' videos have been transferred ')
+
     q.task_done()
     q.join()
-    print(str(i) +' videos have been transferred ')
 
 
 convert_video('/Users/y/PycharmProjects/ec500/in')
