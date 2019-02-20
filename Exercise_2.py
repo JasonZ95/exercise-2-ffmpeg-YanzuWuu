@@ -2,7 +2,7 @@ import os
 import subprocess
 import queue
 import asyncio
-
+import time
 
 def convert_video(path):
     files= os.listdir(path)
@@ -26,10 +26,21 @@ def convert_video(path):
         for task in tasks:
             print('Task: ', task.result())
         i += 1
-    print(str(i-1) +' videos have been transferred ')
+        q.task_done()
+        # q.join()
+    print(str(i-1) +' videos have been transferred into 720p and 480p type')
 
-    q.task_done()
-    q.join()
 
 
-convert_video('/Users/y/PycharmProjects/ec500/in')
+    # q.task_done()
+    # q.join()
+
+def main():
+    start = time.clock()
+    convert_video('/Users/y/PycharmProjects/ec500/in')
+    elapsed = time.clock()-start
+    print("Time used:",elapsed)
+
+
+if __name__=='__main__':
+    main()
