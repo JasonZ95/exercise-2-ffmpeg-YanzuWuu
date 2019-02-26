@@ -3,7 +3,6 @@ import subprocess
 import queue
 import asyncio
 import time
-import pytest
 
 def convert_video(path):
     files= os.listdir(path+'/in/')
