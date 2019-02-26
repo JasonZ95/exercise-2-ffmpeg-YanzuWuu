@@ -16,7 +16,7 @@ def test_duration():
     fnout2 = 'out\\720_11.mp4'
     fnout3 = 'out\\480_22.mp4'
     fnout4 = 'out\\720_22.mp4'
-
+# test video 11
     orig_meta = ffprobe_sync(fnin)
     orig_duration = float(orig_meta['streams'][0]['duration'])
 
@@ -24,7 +24,7 @@ def test_duration():
     duration_480 = float(meta_480['streams'][0]['duration'])
     meta_720 = ffprobe_sync(fnout2)
     duration_720 = float(meta_720['streams'][0]['duration'])
-
+# test video 22
     orig_meta = ffprobe_sync(fnin2)
     orig_duration1 = float(orig_meta['streams'][0]['duration'])
 
@@ -32,8 +32,14 @@ def test_duration():
     duration_480_22 = float(meta_480['streams'][0]['duration'])
     meta_720 = ffprobe_sync(fnout4)
     duration_720_22 = float(meta_720['streams'][0]['duration'])
-    assert orig_duration == approx(duration_480) == approx(duration_720)
-    assert orig_duration1 == approx(duration_480_22) == approx(duration_720_22)
+    
+    assert round(orig_duration,2) == approx(round(duration_480,2))
+    assert round(orig_duration,2) == approx(round(duration_720,2))
+
+    assert round(orig_duration1,2) == approx(round(duration_480_22,2))
+    assert round(orig_duration1,2) == approx(round(duration_720_22,2))
+
+
 
 def main():
     run.convert_video()
