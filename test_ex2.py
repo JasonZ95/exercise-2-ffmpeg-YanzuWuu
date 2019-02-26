@@ -3,6 +3,8 @@ from pytest import approx
 import json
 from pathlib import Path
 import Exercise_2 as run
+
+
 def ffprobe_sync(filein: Path) -> dict:
     """ get media metadata """
     meta = subprocess.check_output(['ffprobe', '-v', 'warning','-print_format', 'json','-show_streams','-show_format',str(filein)], universal_newlines = True)
@@ -10,12 +12,12 @@ def ffprobe_sync(filein: Path) -> dict:
 
 
 def test_duration():
-    fnin = 'in\\11.mp4'
-    fnin2 = 'in\\22.mp4'
-    fnout = 'out\\480_11.mp4'
-    fnout2 = 'out\\720_11.mp4'
-    fnout3 = 'out\\480_22.mp4'
-    fnout4 = 'out\\720_22.mp4'
+    fnin = '11.mp4'
+    fnin2 = '22.mp4'
+    fnout = '480_11.mp4'
+    fnout2 = '720_11.mp4'
+    fnout3 = '480_22.mp4'
+    fnout4 = '720_22.mp4'
 # test video 11
     orig_meta = ffprobe_sync(fnin)
     orig_duration = float(orig_meta['streams'][0]['duration'])
@@ -32,7 +34,7 @@ def test_duration():
     duration_480_22 = float(meta_480['streams'][0]['duration'])
     meta_720 = ffprobe_sync(fnout4)
     duration_720_22 = float(meta_720['streams'][0]['duration'])
-    
+
     assert round(orig_duration,2) == approx(round(duration_480,2))
     assert round(orig_duration,2) == approx(round(duration_720,2))
 
