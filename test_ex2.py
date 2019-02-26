@@ -35,11 +35,11 @@ def test_duration():
     meta_720 = ffprobe_sync(fnout4)
     duration_720_22 = float(meta_720['streams'][0]['duration'])
 
-    assert orig_duration== approx(duration_480)
-    assert orig_duration == approx(duration_720)
+    assert orig_duration== approx(duration_480, rel=0.01)
+    assert orig_duration == approx(duration_720, rel=0.01)
 
-    assert orig_duration1 == approx(duration_480_22)
-    assert orig_duration1 == approx(duration_720_22)
+    assert orig_duration1 == approx(duration_480_22, rel=0.01)
+    assert orig_duration1 == approx(duration_720_22, rel=0.01)
 
 
 
