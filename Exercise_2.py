@@ -19,13 +19,13 @@ def convert_video(path):
         video = q.get()
         async def transfer_720p():
             try:
-                subprocess.call('ffmpeg -i ' +path + '/in/' + video + ' -b 2M -r 30 -s 1280x720 -c:a copy '+path+'/out/720_'+video+str(i)+'.mp4', shell=True)
+                subprocess.call('ffmpeg -i ' +path + '/in/' + video + ' -b 2M -r 30 -s 1280x720 -c:a copy '+path+'/out/720_'+video, shell=True)
                 return '720p videos all transeferred'
             except:
                 return 'transfer failed'
         async def transfer_480p():
             try:
-                subprocess.call('ffmpeg -i '+ path + '/in/' + video +' -b 1M -r 30 -s 720x480 -c:a copy '+path+'/out/480_'+video+str(i)+'.mp4', shell=True)
+                subprocess.call('ffmpeg -i '+ path + '/in/' + video +' -b 1M -r 30 -s 720x480 -c:a copy '+path+'/out/480_'+video, shell=True)
                 return '480p videos all transeferred'
             except:
                 return 'transfer failed'
@@ -40,11 +40,7 @@ def convert_video(path):
         q.task_done()
         # q.join()
     print(str(i-1) +' videos have been transferred into 720p and 480p type')
-    files_output= os.listdir(path+'/out/')
-    for file in files_output:
-        if file =='480_11.mp4':
-            a=0
-    return a
+
 
 
 def ffprobe_sync(filein: Path) -> dict:
