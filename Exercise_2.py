@@ -5,26 +5,32 @@ import asyncio
 import time
 
 
-def convert_video(path):
-    files= os.listdir(path+'/in/')
+def convert_video():
+    path = os.getcwd()+'/'
+    print(path)
+    files= os.listdir(path)
     q = queue.Queue()
     i = 1
     for file in files:
-        print(file)
-        q.put(file)
+        if file =='11.mp4' :
+            print(file)
+            q.put(file)
+        elif file =='22.mp4':
+            print(file)
+            q.put(file)
     while not q.empty():
         video = q.get()
 
         async def transfer_720p():
             try:
-                subprocess.call('ffmpeg -i ' + path + '/in/' + video + ' -b 2M -r 30 -s 1280x720 -c:a copy '+path+'/out/720_'+video, shell=True)
+                subprocess.call('ffmpeg -i ' + path + video + ' -b 2M -r 30 -s 1280x720 -c:a copy '+path+'/720_'+video, shell=True)
                 return '720p videos all transeferred'
             except:
                 return 'transfer failed'
 
         async def transfer_480p():
             try:
-                subprocess.call('ffmpeg -i ' + path + '/in/' + video + ' -b 1M -r 30 -s 720x480 -c:a copy ' + path + '/out/480_'+video, shell=True)
+                subprocess.call('ffmpeg -i ' + path + video + ' -b 1M -r 30 -s 720x480 -c:a copy ' + path + '/480_'+video, shell=True)
                 return '480p videos all transeferred'
             except:
                 return 'transfer failed'
@@ -45,8 +51,7 @@ def convert_video(path):
 def main():
 
     start = time.clock()
-    path = os.getcwd()
-    convert_video(path)
+    convert_video()
     # test_name(path)
     # test_duration()
     elapsed = time.clock()-start
