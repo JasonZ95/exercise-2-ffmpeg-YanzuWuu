@@ -8,5 +8,6 @@ setup(
     license='',
     author='Yuncheng Zhu',
     author_email='yczhu1@bu.edu',
+    install_requires=["flake8", "pytest"],
     description='use nsync and ffmpeg to transfer video inot two version'
 )
