@@ -25,14 +25,14 @@ def convert_video():
             try:
                 subprocess.call('ffmpeg -i ' + path + video + ' -b 2M -r 30 -s 1280x720 -c:a copy '+path+'/720_'+video, shell=True)
                 return '720p videos all transeferred'
-            except:
+            except Exception:
                 return 'transfer failed'
 
         async def transfer_480p():
             try:
                 subprocess.call('ffmpeg -i ' + path + video + ' -b 1M -r 30 -s 720x480 -c:a copy ' + path + '/480_'+video, shell=True)
                 return '480p videos all transeferred'
-            except:
+            except Exception:
                 return 'transfer failed'
 
         tasks = [asyncio.ensure_future(transfer_720p()),asyncio.ensure_future(transfer_480p()),]
