@@ -2,18 +2,18 @@
 Python CI template for EC500 Software Engineering
 
 Main method:
-_ _
+==
 I use a queue to stpre all the mp4 files stored in the path, and then use two async functions to transefer the video into 480p and 720p seperately, with ffmpeg command ofcourse. Finally use a task array to run the functions.
 
 As for the test file, I store the media metadata and compare its origin and 720/480 version as the judgement factor.
 
 Transfer result:
-_ _
+==
 
 ![ex2_result](ex2_result.png)
 
 Process evaluation:
-_ _
+==
 
 ![CPU](CPU.png)
 
